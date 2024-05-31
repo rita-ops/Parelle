@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@angular/material@13.0.0/prebuilt-themes/deeppurple-amber.css" rel="stylesheet">
+</head>
+<body>
+    <div class="form">
+        <div>
+            <img src="../../assets/images/logo.jpg" width="350px">
+        </div>
+        <div>
+            <div class="login-form">
+                <p><b>Sign In</b></p>
+                <form [formGroup]="loginForm" class="form-input">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Username</mat-label>
+                        <input matInput placeholder="Username" formControlName="username" required>
+                        <mat-error *ngIf="loginForm.get('username')!.hasError('required')">Username is required</mat-error>
+                    </mat-form-field>
+                 
+                    <mat-form-field appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" formControlName="password" required>
+                        <mat-error *ngIf="loginForm.get('password')!.hasError('required')">Password is required</mat-error>
+                        <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" [attr.aria-label]="hide ? 'Show password' : 'Hide password'">
+                            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>       
+                        </button>
+                    </mat-form-field>
+                    
+                    <mat-checkbox formControlName="rememberMe">Remember Password</mat-checkbox>
+                    
+                    <button mat-raised-button color="accent" type="button" (click)="onSubmit()">Login</button>
+                </form>
+                
+                <div class="signup">
+                    <p>Not a member? <a href="register">Sign Up Now</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

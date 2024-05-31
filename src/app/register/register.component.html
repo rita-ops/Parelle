@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="form">
+        <div>
+          <img src="../../assets/images/register.png" width="350px">
+        </div>
+        <div>
+          <div>
+            <form [formGroup]="registerForm" class="login-form" (ngSubmit)="onSubmit()">
+              <p><b>Register</b></p>
+              <div class="form-input">
+              
+              <mat-form-field appearance="outline">
+                <mat-label>Username</mat-label>
+                <input matInput placeholder="Username" formControlName="username" required>
+                <mat-error *ngIf="registerForm.get('username')!.hasError('required')">Username is required</mat-error>
+              </mat-form-field>
+                    
+              <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" formControlName="password" required>
+                <button mat-icon-button matSuffix (click)="toggleVisibility()" [attr.aria-label]="hide ? 'Show password' : 'Hide password'">
+                  <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+                <mat-error *ngIf="registerForm.get('password')!.hasError('required')">Password is required</mat-error>
+                <mat-error *ngIf="registerForm.get('password')!.hasError('minlength')">Password must be at least 6 characters</mat-error>
+                <mat-error *ngIf="registerForm.get('password')!.hasError('invalidPassword')">Password must contain at least one uppercase letter, one number, and one special character</mat-error>
+              </mat-form-field>
+      
+              <mat-form-field appearance="outline">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" placeholder="Confirm Password" formControlName="confirmPassword" required>
+                <button mat-icon-button matSuffix (click)="toggleVisibility()" [attr.aria-label]="hide ? 'Show password' : 'Hide password'">
+                  <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+                <mat-error *ngIf="registerForm.get('confirmPassword')!.hasError('required')">Confirmation is required</mat-error>
+                <mat-error *ngIf="registerForm.get('confirmPassword')!.hasError('passwordsDoNotMatch')">Passwords do not match</mat-error>
+              </mat-form-field>
+              
+               <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" formControlName="email">
+                <mat-error *ngIf="registerForm.get('email')?.hasError('invalidEmail') && registerForm.get('email')?.touched">Invalid email</mat-error>
+              </mat-form-field>
+             
+              <mat-form-field appearance="outline">
+                <mat-label>Phone</mat-label>
+                <input matInput placeholder="03-123456" formControlName="phone" required>
+                <mat-error *ngIf="registerForm.get('phone')!.hasError('required')">Phone number is required</mat-error>
+                <mat-error *ngIf="registerForm.get('phone')!.hasError('invalidPhoneNumber')">Invalid phone number format</mat-error>
+              </mat-form-field>
+      
+              <mat-form-field appearance="outline">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="dob">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="registerForm.get('dob')!.hasError('invalidDate')">Invalid date of birth</mat-error>
+                <mat-error *ngIf="registerForm.get('dob')!.hasError('minDate')">You must be at least 12 years old</mat-error>
+                <mat-error *ngIf="registerForm.get('dob')!.hasError('futureDate')">Date of birth cannot be in the future</mat-error>
+                <mat-error *ngIf="registerForm.get('dob')!.hasError('required')">Date of birth is required</mat-error>
+              </mat-form-field>
+
+              <!-- Governorate -->
+              <mat-form-field appearance="outline">
+                <mat-label>Governorate</mat-label>
+                <mat-select formControlName="governorate" required>
+                  <mat-option *ngFor="let option of options" [value]="option.value">{{ option.label }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="registerForm.get('governorate')!.hasError('required')">Governorate is required</mat-error>
+              </mat-form-field>
+
+              <!-- District -->
+              <mat-form-field appearance="outline">
+                <mat-label>District</mat-label>
+                <mat-select formControlName="district" required>
+                  <mat-option *ngFor="let district of districts" [value]="district">{{ district }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="registerForm.get('district')!.hasError('required')">District is required</mat-error>
+              </mat-form-field>
+
+              <!-- Region -->
+              <mat-form-field appearance="outline">
+                <mat-label>Region</mat-label>
+                <mat-select formControlName="region" required>
+                  <mat-option *ngFor="let region of regions" [value]="region">{{ region }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="registerForm.get('region')!.hasError('required')">Region is required</mat-error>
+              </mat-form-field>
+
+              <!-- Details -->
+              <mat-form-field appearance="outline">
+                <mat-label>Details</mat-label>
+                <textarea matInput formControlName="details" placeholder="Enter details here"></textarea>
+                <mat-error *ngIf="registerForm.get('details')!.hasError('required')">Details are required</mat-error>
+              </mat-form-field>
+              
+                <button mat-raised-button color="accent" type="submit">Register</button>
+              </div>
+             
+            </form>
+
+          </div>
+        </div>
+      </div>
+</body>
+</html>

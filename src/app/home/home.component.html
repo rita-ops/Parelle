@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="text">
+        <p><b>🌸 Welcome to PARELLE! 🌸</b></p>
+        <p>Explore our range of handpicked jewelry, from delicate earrings that whisper elegance to bold necklaces that demand attention.</p>
+        <p>Wrap yourself in luxury with our selection of scarves and wraps, designed to add a touch of flair to any outfit.</p>
+        <p>And don't forget to browse our chic handbags and purses, because every woman deserves a bag as beautiful as she is.</p>
+    </div>
+    <div class="home">
+        <div class="main-image">
+            <img src='../../assets/images/logo.jpg' alt="Parelle" width="350px">
+        </div>
+        <div class="images">
+            <div class="image-container" *ngFor="let imageUrl of imageUrls">
+                <img [src]="imageUrl" alt="Image" >
+                <div class="image-name">{{ getImageName(imageUrl) }}</div>
+            </div>
+        </div>
+    </div>
+</body> 
+</html>
+

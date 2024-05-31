@@ -1,0 +1,55 @@
+body 
+    background-color: white
+
+.text
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-top: 2%
+
+.home
+    display: flex
+    margin-left: 20px
+    align-items: center
+//format of main image parelle
+.main-image
+    display: flex
+    justify-content: center
+    margin-top: 30px
+
+    img
+        border-radius: 10px
+ 
+  
+.images
+    display: grid
+    grid-template-columns: repeat(6, minmax(150px, 1fr)) // Adjust column width as needed
+    grid-gap: 10px
+    margin-left: 5%
+    margin-top: 2%
+
+.image-container 
+   
+    transition: width 0.3s ease // Smooth transition for width change
+    cursor: pointer
+    position: relative // Position relative for absolute positioning of image name
+
+    img 
+        width: 55% /* Adjust image size as needed */
+        border-radius: 10px /* Example border radius */
+        height: 100%
+
+    .image-name 
+        position: absolute
+        top: 50% /* Position the name in the middle vertically */
+        left: 50% /* Position the name in the middle horizontally */
+        transform: translate(-50%, -50%)
+        background-color: rgba(255, 255, 255, 0.8)
+        padding: 5px
+        border-radius: 5px
+        font-size: 12px
+        pointer-events: none // Ensure the name does not interfere with mouse events
+        display: none // Initially hide the name
+        
+    &:hover .image-name 
+        display: block
