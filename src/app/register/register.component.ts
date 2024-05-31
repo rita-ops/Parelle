@@ -11,6 +11,8 @@ import { ValidatorFn, AbstractControl } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select'; // Import MatSelectModule
+import { Router } from '@angular/router'; // Import Router for redirection
+
 
 
 
@@ -141,8 +143,9 @@ export class RegisterComponent implements OnInit {
 
   registerForm!: FormGroup;
   hide: boolean = true;
+  hideConfirmPassword: boolean = true;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
@@ -167,6 +170,15 @@ export class RegisterComponent implements OnInit {
     this.hide = !this.hide;
   }
 
+  toggleConfirmPasswordVisibility() {
+    this.hideConfirmPassword = !this.hideConfirmPassword;
+  }
+
+  cancel() {
+    // Redirect to the home page
+    this.router.navigate(['/']); // Replace "/" with the route of your home page
+  }
+  
   onSubmit() {
     if (this.registerForm.valid) {
       console.log(this.registerForm.value);
